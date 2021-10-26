@@ -10,12 +10,14 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    public TextMeshPro playerNameText;
+    public TMP_InputField playerNameInput;
+    public TMP_Text bestScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ScoreManager.Instance.LoadBestScore();
+        bestScoreText.text = "Best score: " + ScoreManager.Instance.highScore + " (" + ScoreManager.Instance.bestPlayerName + ")";
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class MenuUIHandler : MonoBehaviour
     public void StartGame()
     {
         //ScoreManager.Instance.playerName = playerNameText.GetParsedText();
+        ScoreManager.Instance.playerName = playerNameInput.text;
         SceneManager.LoadScene(1);
     }
 
